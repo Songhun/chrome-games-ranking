@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title>Console Chrome Games Ranking</title>
+		<style type="text/css">
+		#console {
+			border: 1px solid #B8C3C9;
+			float: right;
+			width:300px;
+			height:100%;
+		}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script src="ranking.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			// random value for adding
+			$('#generator').click(function() {
+				var rnd = Math.floor((Math.random()*1000)+1);
+				$('input[name=user_name]').val('user' + rnd);
+				$('input[name=score]').val(rnd);
+			});
+			$('#generator').click();
+
+			// bind events
+			$('#add-user-record').click(function() {
+				var game_name = $('input[name=games]:checked').val()
+					,	user_name = $('input[name=user_name]').val()
+					,	score = $('input[name=score]').val()
+				ranking.add(game_name, user_name, score, function(success, data) {
+					data = JSON.parse(data)
+					var text = (success) ? ['rank:', data.rank, data.game_name, data.user_name, data.score].join(' ') : 'ERROR';
+					$('#console').val(text);
+				});
+			});
+
+			// get top 100 list
+			$('#get-top100').click(function() {
+				var game_name = $('input[name=games]:checked').val()
+					,	max = 100;
+				ranking.top(game_name, max, function(success, data) {
+					var rankers = JSON.parse(data)
+						,	text = (!success) ? 'ERROR' : '';
+
+					$.each(rankers, function(i, v) {
+						text += [v.game_name, v.user_name, v.score, '\n'].join(' ')
+					})
+					
+					$('#console').val(text);
+				});
+			})
+		})
+	</script>
+</head>
+	<body>
+		<div id="">
+			<textarea rows="4" cols="50" id="console"></textarea>
+		</div>
+		<div id="controls">
+			<h1>Console</h1>
+			<div>
+				<div>user name: <input type="text" name="user_name" /><input type="button" id="generator" value="Generate" /></div>
+				</div>score: <input type="text" name="score" /></div>
+				</div>
+					<input type="radio" name="games" value="mong_adventure" checked="checked">Mong Adventure<br>
+					<input type="radio" name="games" value="plughole">Plug Hole<br>
+					<input type="radio" name="games" value="galaxy">Galaxy<br>
+					<input type="radio" name="games" value="fight">Fight<br>
+				</div>
+			</div>
+			<div>
+				<input type="button" id="add-user-record" value="Add user record">
+			</div>
+			<div>
+				<input type="button" id="get-top100" value="Get top 100">
+			</div>
+		</div>
+	</body>
+</html>
