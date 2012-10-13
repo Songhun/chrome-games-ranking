@@ -6,6 +6,29 @@ Google Hackpair에 출품작인 Chrome Games Raning Server 소스입니다.
 
 ##
 ## 사용자의 새로운 기록을 추가할 때
+### URL 
+```POST http://cg-ranking.appspot.com/user/'''
+### DATA
+```
+{
+	ranker:{
+		game_name:[w+], 
+		user_name:[w+], 
+		score:[0-9]
+	}
+}
+```
+### RESPONSE
+```
+{
+	game_name:[w+], 
+	user_name:[w+], 
+	score:[0-9], 
+	rank[0-9] // 현재 점수에 해당하는 랭킹
+}
+
+### USING LIBRARY
+간단하게 static/raning.js를 사용하여 데이터 추가가 가능합니다.
 ``` javascript
 ranking.add(game_name, user_name, score, function(success, data) {
 	data = JSON.parse(data)

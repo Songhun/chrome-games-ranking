@@ -38,7 +38,6 @@ class UserHandler(webapp2.RequestHandler):
 		ranker = ''
 
 		if q.count() > 0:
-			logging.info('founc')
 			ranker = q.get()
 			ranker.score = int(data['score'])
 			ranker.put()
