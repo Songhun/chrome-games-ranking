@@ -17,12 +17,12 @@ var ranking = {
 		  score:score
 		})};
 
-		this.request(_baseurl + '/user/', 'post', data, cb);
+		this.request(this._baseurl + '/user/', 'post', data, cb);
 	},
 	top: function(game_name, max, cb) {
 		$.ajax({
 			type: 'get',
-		  url: _baseurl + '/top/' + game_name + '/' + max,
+		  url: this._baseurl + '/top/' + game_name + '/' + max,
 			success: function(data) {cb(true, data)},
 			error: function(xhr) {cb(false, xhr)},
 		});
