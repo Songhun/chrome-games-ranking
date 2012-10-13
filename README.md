@@ -1,5 +1,5 @@
 # CHROME GAMES RANKING SERVER
-Google Hackpair에 출품작인 Chrome Games Raning Server 소스입니다. 
+Google Hackpair에 출품작인 Chrome Games Ranking Server 소스입니다. 
 
 # HOW TO USE
 클라이언트에서는 직접 URL을 사용하거나 static/ranking.js파일을 include 하여 'ranker' object를 사용하면 됩니다. 요청/응답의 모든 데이터 타입은 json타입으로 사용합니다. API테스트는 [콘솔페이지](http://goo.gl/WDZJt)에서 할 수 있습니다.
