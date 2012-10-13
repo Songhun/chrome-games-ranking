@@ -1,4 +1,5 @@
 var ranking = {
+	_baseurl: 'http://cg-ranking.appspot.com',
 	request: function(method, type, data, cb) {
 		$.ajax({
 			type: type,
@@ -16,12 +17,12 @@ var ranking = {
 		  score:score
 		})};
 
-		this.request('../user/', 'post', data, cb);
+		this.request(_baseurl + '/user/', 'post', data, cb);
 	},
 	top: function(game_name, max, cb) {
 		$.ajax({
 			type: 'get',
-		  url: '../top/' + game_name + '/' + max,
+		  url: _baseurl + '/top/' + game_name + '/' + max,
 			success: function(data) {cb(true, data)},
 			error: function(xhr) {cb(false, xhr)},
 		});
