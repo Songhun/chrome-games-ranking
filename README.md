@@ -6,7 +6,7 @@ Google Hackpair에 출품작인 Chrome Games Raning Server 소스입니다.
 
 ##
 ## 사용자의 새로운 기록을 추가할 때
-```
+``` javascript
 ranking.add(game_name, user_name, score, function(success, data) {
 	data = JSON.parse(data)
 	var ret = (success) ? ['rank:', data.rank, data.game_name, data.user_name, data.score].join(' ') : 'ERROR';
